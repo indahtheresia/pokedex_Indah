@@ -1,3 +1,4 @@
+import Card from "@/components/card";
 import Carousel from "@/components/carousel";
 
 export default async function Home() {
@@ -25,7 +26,7 @@ export default async function Home() {
           </div>
         </aside>
 
-        <div className="col-span-12 md:col-span-8">
+        <div className="col-span-12 md:col-span-6">
           <div className="sticky top-4 z-20 bg-white pb-4">
             <div className="flex gap-2">
               <input
@@ -39,11 +40,14 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-            Pokemon Cards
+            <Card name="ivysaur" image="/next.svg" types={["grass", "poison"]} />
+            <Card name="ivysaur" image="/next.svg" types={["grass", "poison"]} />
+            <Card name="ivysaur" image="/next.svg" types={["grass", "poison"]} />
+            <Card name="ivysaur" image="/next.svg" types={["grass", "poison"]} />
           </div>
         </div>
 
-        <aside className="hidden md:block md:col-span-2">
+        <aside className="hidden md:block md:col-span-4">
           <div className="sticky top-4 h-[500px] rounded-xl bg-slate-100 flex items-center justify-center">
             Right Static Image
           </div>
