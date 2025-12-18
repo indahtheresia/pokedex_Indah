@@ -1,5 +1,6 @@
 import Card from "@/components/card";
 import Carousel from "@/components/carousel";
+import PokemonList from "@/components/pokemonList";
 
 export default async function Home() {
   return (
@@ -27,24 +28,7 @@ export default async function Home() {
         </aside>
 
         <div className="col-span-12 md:col-span-6">
-          <div className="sticky top-4 z-20 bg-white pb-4">
-            <div className="flex gap-2">
-              <input
-                placeholder="Pokemon Name"
-                className="flex-1 rounded-lg border px-4 py-2"
-              />
-              <button className="bg-orange-400 text-white px-4 py-2 rounded-lg">
-                Search
-              </button>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-            <Card name="ivysaur" image="/next.svg" types={["grass", "poison"]} />
-            <Card name="ivysaur" image="/next.svg" types={["grass", "poison"]} />
-            <Card name="ivysaur" image="/next.svg" types={["grass", "poison"]} />
-            <Card name="ivysaur" image="/next.svg" types={["grass", "poison"]} />
-          </div>
+          <PokemonList />
         </div>
 
         <aside className="hidden md:block md:col-span-4">
