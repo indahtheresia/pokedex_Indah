@@ -5,10 +5,6 @@ const PORT = 3000;
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.status(200).send({message: "API is running"});
-});
-
 // create a new API endpoint 
 // GET /api/pokemons?page=<number> &limit=<number>
 app.get('/api/pokemons', async (req, res) => {
@@ -51,6 +47,10 @@ app.get('/api/pokemons', async (req, res) => {
   } catch (error) {
     res.status(500).send({message: "Failed to fetch pokemon"})
   }
+})
+
+app.use((req, res) => {
+  res.status(404).send({ error: "Not Found" })
 })
 
 app.listen(PORT, () => {
