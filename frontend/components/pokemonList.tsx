@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Card from "./card";
 import Search from "./search";
+import { useInView } from "react-intersection-observer";
 
 interface Pokemon {
   name: string,
@@ -12,48 +13,52 @@ interface Pokemon {
   height: number
 }
 
+const POKEMON_LIMIT_PER_PAGE = 15
+
 export default function PokemonList() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
   const [isLoading, setIsLoading] = useState(false)
   const [hasMore, setHasMore] = useState(true);
+  const [ref, inView] = useInView();
 
-  const fetchPokemons = async (currentPage: number, currentLimit: number) => {
-    setIsLoading(true);
-    try {
-      const res = await fetch(`/api/pokemons?page=${currentPage}&limit=${currentLimit}`);
-      const data = await res.json();
+  const handleLoadMore = async () => {
+  if (isLoading) return;
 
-      if (data && data.length > 0) {
-        setPokemons((prev) => [...prev, ...data]);
-        if (data.length < currentLimit) {
-          setHasMore(false);
-        }
-      } else {
-        setHasMore(false);
-      }
-    } catch (error) {
-      console.log("Error fetching pokemons: ", error);
+  setIsLoading(true);
+
+  try {
+    const res = await fetch(`/api/pokemons?page=${page}&limit=${POKEMON_LIMIT_PER_PAGE}`);
+    const data = await res.json();
+
+    if (data && data.length > 0) {
+      setPokemons((prev) => [...prev, ...data]);
+      setPage((prev) => prev + 1);
+      if (data.length < POKEMON_LIMIT_PER_PAGE) setHasMore(false);
+    } else {
       setHasMore(false);
-    } finally {
-      setIsLoading(false);
     }
-  };
+  } catch (err) {
+    console.error(err);
+    setHasMore(false);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   useEffect(() => {
-    fetchPokemons(1, limit);
+    handleLoadMore()
   }, []);
 
-  const handleLoadMore = () => {
-    const nextPage = page + 1;
-    setPage(nextPage);
-    fetchPokemons(nextPage, limit);
-  }
+  useEffect(() => {
+    if (inView && hasMore && !isLoading) {
+      handleLoadMore()
+    }
+  }, [inView, hasMore, isLoading]);
 
   return (
     <>
-      <div className="sticky top-4 z-20 bg-white pb-4">
+      <div className="sticky top-4 z-20 mb-4">
         <Search pokemons={pokemons} />
       </div>
 
@@ -64,13 +69,9 @@ export default function PokemonList() {
           ))}
         </ul>
 
-        {isLoading && <p>Loading more pokemons...</p>}
-
-        {!isLoading && hasMore && (
-          <button onClick={handleLoadMore}>Load More</button>
-        )}
-
-        {!hasMore && <p>You have reached the end of the list.</p>}
+        <div ref={ref} className="text-green-900 text-center">
+          Loading more pokemons...
+        </div>
       </div>
       
     </>
