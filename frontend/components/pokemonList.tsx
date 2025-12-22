@@ -21,57 +21,71 @@ export default function PokemonList() {
   const [isLoading, setIsLoading] = useState(false)
   const [hasMore, setHasMore] = useState(true);
   const [ref, inView] = useInView();
+  const [searchValue, setSearchValue] = useState("");
 
   const handleLoadMore = async () => {
-  if (isLoading) return;
+    if (isLoading) return;
 
-  setIsLoading(true);
+    setIsLoading(true);
 
-  try {
-    const res = await fetch(`/api/pokemons?page=${page}&limit=${POKEMON_LIMIT_PER_PAGE}`);
-    const data = await res.json();
+    try {
+      const res = await fetch(`/api/pokemons?page=${page}&limit=${POKEMON_LIMIT_PER_PAGE}`);
+      const data = await res.json();
 
-    if (data && data.length > 0) {
-      setPokemons((prev) => [...prev, ...data]);
-      setPage((prev) => prev + 1);
-      if (data.length < POKEMON_LIMIT_PER_PAGE) setHasMore(false);
-    } else {
+      if (data && data.length > 0) {
+        setPokemons((prev) => [...prev, ...data]);
+        setPage((prev) => prev + 1);
+        if (data.length < POKEMON_LIMIT_PER_PAGE) setHasMore(false);
+      } else {
+        setHasMore(false);
+      }
+    } catch (err) {
+      console.error(err);
       setHasMore(false);
+    } finally {
+      setIsLoading(false);
     }
-  } catch (err) {
-    console.error(err);
-    setHasMore(false);
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   useEffect(() => {
     handleLoadMore()
   }, []);
 
   useEffect(() => {
+    if (searchValue) return;
     if (inView && hasMore && !isLoading) {
       handleLoadMore()
     }
   }, [inView, hasMore, isLoading]);
 
+  useEffect(() => {
+    if (searchValue) {
+      setHasMore(false);
+    } else {
+      setHasMore(true);
+    }
+  }, [searchValue])
+
+  const filteredPokemons = pokemons.filter(p => p.name.toLowerCase().includes(searchValue.toLowerCase()));
+
   return (
     <>
       <div className="sticky top-4 z-20 mb-4">
-        <Search pokemons={pokemons} />
+        <Search onSearch={setSearchValue} />
       </div>
 
       <div>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-          {pokemons.map((pokemon) => (
+          {filteredPokemons.map((pokemon) => (
             <Card key={pokemon.name} name={pokemon.name} image={pokemon.image} types={pokemon.types} />
           ))}
         </ul>
 
-        <div ref={ref} className="text-green-900 text-center">
+        {!searchValue && (
+          <div ref={ref} className="text-green-900 text-center">
           Loading more pokemons...
         </div>
+        )}
       </div>
       
     </>
