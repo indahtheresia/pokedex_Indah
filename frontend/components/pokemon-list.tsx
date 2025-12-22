@@ -56,7 +56,7 @@ export default function PokemonList() {
     if (inView && hasMore && !isLoading) {
       handleLoadMore()
     }
-  }, [inView, hasMore, isLoading]);
+  }, [inView, hasMore, isLoading, searchValue]);
 
   useEffect(() => {
     if (searchValue) {

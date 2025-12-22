@@ -1,5 +1,6 @@
 import Carousel from "@/components/carousel";
-import PokemonList from "@/components/pokemonList";
+import PokemonList from "@/components/pokemon-list";
+import StickyImage from "@/components/sticky-image";
 import Image from "next/image";
 
 export default async function Home() {
@@ -11,7 +12,7 @@ export default async function Home() {
         </div>
 
         <div className="col-span-12 md:col-span-4 flex flex-col gap-4">
-          <div className="relative h-30 w-full rounded-xl bg-pink-100 overflow-hidden">
+          <div className="relative h-30 w-full rounded-xl border-2 border-[#90ee90] bg-pink-100 overflow-hidden">
             <div className="absolute bottom-0 left-0 w-full h-[200%] animate-down">
               <Image
                 src="/images/gif/pokemon1.gif"
@@ -22,7 +23,7 @@ export default async function Home() {
             </div>
           </div>
 
-        <div className="relative h-30 w-full rounded-xl bg-pink-100 overflow-hidden">
+        <div className="relative h-30 w-full rounded-xl border-2 border-[#90ee90] bg-pink-100 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-[200%] animate-up">
             <Image
               src="/images/gif/pokemon2.gif"
@@ -37,33 +38,13 @@ export default async function Home() {
       </section>
 
       <section className="grid grid-cols-12 gap-4">
-        <aside className="hidden md:block md:col-span-2">
-          <div className="sticky top-4 h-125 rounded-xl bg-slate-100 flex items-center justify-center">
-            <Image
-              src="/images/left_banner.webp"
-              alt="left banner"
-              fill
-              className="object-cover"
-            />
-            Left Static Image
-          </div>
-        </aside>
+        <StickyImage colSpan={2} position="left" />
 
         <div className="col-span-12 md:col-span-6">
           <PokemonList />
         </div>
 
-        <aside className="hidden md:block md:col-span-4">
-          <div className="sticky top-4 h-125 rounded-xl bg-slate-100 flex items-center justify-center">
-            <Image
-              src="/images/right_banner.webp"
-              alt="right banner"
-              fill
-              className="object-cover"
-            />
-            Right Static Image
-          </div>
-        </aside>
+        <StickyImage colSpan={4} position="right" />
       </section>
     </main>
   );
