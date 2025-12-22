@@ -1,6 +1,6 @@
 # SETUP INSTRUCTION FOR BACKEND AND FRONTEND
 ## GETTING STARTED
-1. Run `git clone https://github.com/indahtheresia/pokedex_Indah.git` on terminal to clone the repository.
+1. Run `git clone https://github.com/indahtheresia/pokedex_indah.git` on terminal to clone the repository.
 ## BACKEND
 Run these command on terminal:
 1. `cd backend` => navigate to the backend directory
