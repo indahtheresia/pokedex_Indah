@@ -8,7 +8,7 @@ export default function StickyImage({colSpan, position}: {colSpan: number, posit
   return (
     <aside className={`hidden md:block ${colSpanMap[colSpan]}`}>
       <div className="sticky top-4">
-        <div className="relative h-125 rounded-xl border-2 border-[#90ee90] bg-slate-100 overflow-hidden">
+        <div className="relative h-125 rounded-xl border-2 border-[#00b200] bg-slate-100 overflow-hidden">
           <Image
             src={`/images/${position}_banner.webp`}
             alt={`${position} banner`}

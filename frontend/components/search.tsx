@@ -15,7 +15,7 @@ export default function Search({onSearch} : {onSearch: (value: string) => void})
         placeholder="Pokemon Name"
         value={searchInput}
         onChange={(event) => setSearchInput(event.target.value)}
-        className="flex-1 rounded-lg border border-[#90ee90] px-4 py-2 bg-[#eaffea] text-[#488948]"
+        className="flex-1 rounded-lg border border-[#00b200] px-4 py-2 bg-[#eaffea] text-[#488948]"
       />
       <button 
         type="submit"

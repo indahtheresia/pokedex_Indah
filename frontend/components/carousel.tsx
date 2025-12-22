@@ -21,7 +21,7 @@ export default function Carousel() {
   }, []);
 
   return (
-    <div className="relative w-full h-full rounded-xl border-2 border-[#90ee90] overflow-hidden">
+    <div className="relative w-full h-full rounded-xl border-2 border-[#00b200] overflow-hidden">
       <Image
         src={images[index]}
         alt="Pokemon banner"

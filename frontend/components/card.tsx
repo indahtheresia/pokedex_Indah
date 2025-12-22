@@ -6,7 +6,7 @@ export default function Card({name, image, types}: {
   types: string[]
 }) {
   return (
-    <li className="flex items-center gap-4 rounded-sm border border-[#90ee90] p-4 shadow-sm hover:shadow-md transition bg-[#eaffea]">
+    <li className="flex items-center gap-4 rounded-sm border border-[#00b200] p-4 shadow-sm hover:shadow-md transition bg-[#eaffea]">
       <Image
         src={image}
         alt={name}
