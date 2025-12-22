@@ -51,3 +51,9 @@ Run these command on terminal:
 ```
 
 **Postman API documentation URL:** <https://documenter.getpostman.com/view/42577752/2sB3dWs74D>
+
+**Screenshot:**
+<img width="1897" height="924" alt="Screenshot 2025-12-22 at 20 54 51" src="https://github.com/user-attachments/assets/951d864c-53a4-4dd0-a7bd-9b7e42adf50f" />
+
+<img width="1901" height="934" alt="Screenshot 2025-12-22 at 20 55 23" src="https://github.com/user-attachments/assets/195de0c3-289a-48ca-8e49-972ce98ed5f2" />
+
