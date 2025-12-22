@@ -39,6 +39,12 @@ export default async function Home() {
       <section className="grid grid-cols-12 gap-4">
         <aside className="hidden md:block md:col-span-2">
           <div className="sticky top-4 h-125 rounded-xl bg-slate-100 flex items-center justify-center">
+            <Image
+              src="/images/left_banner.webp"
+              alt="left banner"
+              fill
+              className="object-cover"
+            />
             Left Static Image
           </div>
         </aside>
@@ -49,6 +55,12 @@ export default async function Home() {
 
         <aside className="hidden md:block md:col-span-4">
           <div className="sticky top-4 h-125 rounded-xl bg-slate-100 flex items-center justify-center">
+            <Image
+              src="/images/right_banner.webp"
+              alt="right banner"
+              fill
+              className="object-cover"
+            />
             Right Static Image
           </div>
         </aside>

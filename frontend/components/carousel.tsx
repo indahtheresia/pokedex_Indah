@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const images = [
-  "/pokemon_banner.jpeg",
-  "/pokemon_banner2.jpeg",
-  "/pokemon_banner3.jpeg",
+  "/images/banner1.webp",
+  "/images/banner2.webp",
+  "/images/banner3.webp"
 ];
 
 export default function Carousel() {
